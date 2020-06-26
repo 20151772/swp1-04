@@ -10,6 +10,7 @@ html = """
 		</form>
 		<h3>a + b = %(sum)s </h3>
 		<h3>a * b = %(multi)s </h3>
+		<br><center><h3> %(err_msg)s </h3></center>
 	</body>
 </html>
 """

@@ -8,6 +8,7 @@ def application(environ, start_response):
 
 	sum = ""
 	multi = ""
+	err_msg = ""
 	
 	try:
 		a, b = int(a), int(b)
@@ -19,9 +20,26 @@ def application(environ, start_response):
 		multi = str(int_multi)
 
 	except:
-		pass	
+		try:
+			if a is '':  # a='',b='int'
+				b = int(b)
+				err_msg = "Empty Value"
+				
+			elif b is '':  # b='',a='int' 
+				a = int(a)
+				err_msg = "Empty Value"
 
-	response_body = html % {'sum':sum, 'multi':multi}
+			else:  # a='int',b='str' or b='str',a='int'
+				err_msg = "Wrong Type of Value"	
+
+		except:
+			if a is '' and b is '':  # a='',b='' 
+				err_msg = ""
+
+			else:  # a='',b='str' or a='str',b='' or a='str',b='str' 
+				err_msg = "Wrong Type of Value"
+	
+	response_body = html % {'sum':sum, 'multi':multi, 'err_msg':err_msg}
 	start_response('200 OK', [
 		('Content-Type', 'text/html'),
 		('Content-Length', str(len(response_body)))
