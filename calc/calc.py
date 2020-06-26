@@ -6,15 +6,18 @@ def application(environ, start_response):
 	a = qs.get('a', [''])[0]
 	b = qs.get('b', [''])[0]
 
-	sum = 0
-	multi = 0
+	sum = ""
+	multi = ""
 
 	if '' not in [a, b]:
 		a, b = int(a), int(b)
+	
+		int_sum = a + b
+		int_multi = a * b	
 
-		sum = a + b
-		multi = a * b
-		
+		sum =  str(int_sum)
+		multi = str(int_multi)
+	
 	response_body = html % {'sum':sum, 'multi':multi}
 	start_response('200 OK', [
 		('Content-Type', 'text/html'),
