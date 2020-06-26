@@ -8,8 +8,8 @@ def application(environ, start_response):
 
 	sum = ""
 	multi = ""
-
-	if '' not in [a, b]:
+	
+	try:
 		a, b = int(a), int(b)
 	
 		int_sum = a + b
@@ -17,7 +17,10 @@ def application(environ, start_response):
 
 		sum =  str(int_sum)
 		multi = str(int_multi)
-	
+
+	except:
+		pass	
+
 	response_body = html % {'sum':sum, 'multi':multi}
 	start_response('200 OK', [
 		('Content-Type', 'text/html'),
