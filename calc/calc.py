@@ -1,5 +1,5 @@
 from cgi import parse_qs
-from template2 import html
+from template import html
 from PIL import Image, ImageDraw, ImageFont
 
 def application(environ, start_response):
